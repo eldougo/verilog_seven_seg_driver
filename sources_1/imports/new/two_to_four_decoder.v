@@ -50,10 +50,12 @@ module two_to_four_decoder(
     
     always @ (in)
     begin
-        if      ( in == 2'h0 ) out = 4'b0001;
-        else if ( in == 2'h1 ) out = 4'b0010;
-        else if ( in == 2'h2 ) out = 4'b0100;
-        else                   out = 4'b1000;  // ( in == 2'h3 )
+        case (in)
+        2'h0   :  out = 4'b0001;
+        2'h1   :  out = 4'b0010;
+        2'h2   :  out = 4'b0100;
+        default:  out = 4'b1000;  // ( in == 2'h3 )
+        endcase
     end
     
 endmodule

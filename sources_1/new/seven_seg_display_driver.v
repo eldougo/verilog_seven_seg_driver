@@ -23,15 +23,17 @@
 `define CNTR_BITS 21
 
 module seven_seg_display_driver
-   #(parameter          CNTR_STEP = 1)  // For simulation
-    (input              clk,            // Clock
+#(
+    parameter          CNTR_STEP = 1  // For simulation
+)(
+    input              clk,            // Clock
     input  [15:0]       disp_buf,       // Display buffer
     input  [2:0]        dp,             // Which segment to show the decimal point, 0 for none.
     input  [3:0]        lum,            // Luminosity, display brightness, 0 to 15
     output reg [3:0]    an_mux,         // Seven seg anode driver
     output reg [6:0]    seg_mux,        // Seven seg cathode driver
     output reg          dp_mux          // Decimal point driver
-    );
+);
     
     reg  [`CNTR_BITS-1:0] r_refresh_cntr = 0;   // Clock divider used to refresh the display
     wire [3:0]  w_display_digit;                // Encoded digit to display
